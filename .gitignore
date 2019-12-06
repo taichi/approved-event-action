@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+.cache
+.env
+.env.*
+.nyc_output
+coverage
+/dist
+**/dist/**
+
+*.log
+*.zip
