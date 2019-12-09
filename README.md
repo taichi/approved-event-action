@@ -1,37 +1,32 @@
-# ts-template
-[![actions](https://github.com/taichi/ts-template/workflows/Daily%20Build/badge.svg)](https://github.com/taichi/ts-template/actions) [![codecov](https://codecov.io/gh/taichi/ts-template/branch/master/graph/badge.svg)](https://codecov.io/gh/taichi/ts-template)
+# approved-event-action
 
-Opinionated TypeScript Application Development template
+This action provide Pseudo Appeoved Event.
 
-## setup
-execute below commands on project root dir.
+## Inputs
 
-    yarn install
-    code .
+### `approvals`
 
-# Altanatives
+**Optional** The number of unique approvals. Default `1`.
 
-## package manager
+## Outputs
 
-* npm
-* [pnpm](https://pnpm.js.org/)
+### `approved`
 
-## Module Bundler
+Pull Request is approved or not. if approved, value is `true`;
 
-* [gulp](https://gulpjs.com/)
-* [webpack](https://webpack.js.org/)
-* [rollup.js](https://rollupjs.org/)
+## Example usage
 
-## testing framework
-
-* [Jest](https://jestjs.io/)
-* [Mocha](https://mochajs.org/)
-
-## Lint
-
-* [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
-
-
-## Logger
-
-* [winston](https://github.com/winstonjs/winston)
+    on: pull_request_review
+    name: Example Job
+    jobs:
+      myJob:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: taichi/approved-event-action@v1
+          id: approved
+          with:
+            approvals: '2'
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - run: echo "Approved !!"
+          if: approved.outputs.approved == 'true'

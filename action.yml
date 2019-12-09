@@ -1,0 +1,13 @@
+name: 'approved-event'
+description: 'export approved state to environment variables.'
+author: 'taichi'
+inputs:
+  approvals:
+    description: 'number of approvals require to be approved.'
+    default: '1'
+outputs:
+  approved:
+    description: 'if current pull request is approved, this value is set to true.'
+runs:
+  using: 'node12'
+  main: 'dist/main.js'
