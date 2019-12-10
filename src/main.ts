@@ -8,7 +8,6 @@ const readFile = util.promisify(fs.readFile);
 // tslint:disable: no-unsafe-any
 async function run() {
   try {
-    const action = process.env.GITHUB_ACTION;
     const token = process.env.GITHUB_TOKEN;
     const nwo = process.env.GITHUB_REPOSITORY;
     const path = process.env.GITHUB_EVENT_PATH;
@@ -17,6 +16,7 @@ async function run() {
       return;
     }
     const payload = JSON.parse(await readFile(path, { encoding: "utf-8" }));
+    const action = payload.action;
     const state = payload.review.state;
     if (!payload.pull_request) {
       core.setFailed("this event doesn't contain pull request");
