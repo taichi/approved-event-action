@@ -1,5 +1,8 @@
 name: 'approved-event'
 description: 'export approved state to environment variables.'
+branding:
+  icon: 'thumbs-up'
+  color: 'green'
 author: 'taichi'
 inputs:
   approvals:
