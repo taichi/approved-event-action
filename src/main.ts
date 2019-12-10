@@ -26,16 +26,11 @@ async function run() {
       const approvals = getApprovals();
       const octokit = new Octokit({ auth: `token ${token}` });
       const [owner, repo] = nwo.split("/");
-      const options = octokit.pulls.getReview.endpoint.merge({ owner, repo, pull_number: payload.pull_request.number });
-      const list = flatten(map((response: Octokit.Response<Octokit.PullsGetReviewResponse>) => {
-        return {
-          state: response.data.state,
-          user: response.data.user
-        };
-      }, octokit.paginate.iterator(options)));
+      const options = octokit.pulls.listReviews.endpoint.merge({ owner, repo, pull_number: payload.pull_request.number });
+      const list = map((response: Octokit.Response<Octokit.PullsListReviewsResponse>) => response.data, octokit.paginate.iterator(options));
 
       const users = new Set<string>();
-      for await (const review of list) {
+      for await (const review of flatten(list)) {
         if (review.state === "APPROVED") {
           users.add(review.user.login);
           if (approvals <= users.size) {

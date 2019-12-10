@@ -8,3 +8,9 @@ coverage
 
 *.log
 *.zip
+
+test.cmd
+
+*.http
+
+event.json
