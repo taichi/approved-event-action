@@ -22,7 +22,7 @@ Pull Request is approved or not. if approved, value is `true`;
       myJob:
         runs-on: ubuntu-latest
         steps:
-        - uses: taichi/approved-event-action@v1.0.1
+        - uses: taichi/approved-event-action@v1.2.1
           id: approved
           with:
             approvals: '2'
