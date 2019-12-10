@@ -29,4 +29,4 @@ Pull Request is approved or not. if approved, value is `true`;
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         - run: echo "Approved !!"
-          if: approved.outputs.approved == 'true'
+          if: steps.approved.outputs.approved == 'true'
