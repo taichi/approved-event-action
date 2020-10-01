@@ -51,7 +51,7 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.2.0",
+    "@actions/core": "^1.2.6",
     "@octokit/rest": "16.35.0",
     "streaming-iterables": "4.1.1"
   },
