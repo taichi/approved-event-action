@@ -35,7 +35,6 @@ async function run() {
           users.add(review.user.login);
           if (approvals <= users.size) {
             core.setOutput("approved", "true");
-            core.exportVariable("APPROVED", "true");
             break;
           }
         }
