@@ -1,7 +1,7 @@
 {
-  "name": "approved-event-action",
-  "version": "1.2.1",
-  "description": "Pseudo Appeoved Action",
+  "name": "approved-event-checker",
+  "version": "1.0.0",
+  "description": "Github PR approved checker",
   "keywords": [
     "actions",
     "node",
@@ -9,10 +9,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/taichi/approved-event-action"
+    "url": "https://github.com/luisrjaeger/approved-event-checker"
   },
   "license": "MIT",
-  "author": "taichi",
+  "author": "luisrjaeger",
   "scripts": {
     "build": "run-s clean lint compile bundle",
     "bundle": "ncc build src/main.ts -m",
