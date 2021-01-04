@@ -1,4 +1,4 @@
-name: 'approved-checker'
+name: 'approved-event-checker'
 description: 'export approved state to step output'
 branding:
   icon: 'thumbs-up'
