@@ -61,7 +61,7 @@ function getApprovals() {
 
 function getCheckChangesRequested() {
   const b = core.getInput("check_changes_requested");
-  return (b == null || b == "true");
+  return (b === undefined || b === "true");
 }
 
 // tslint:disable-next-line: no-floating-promises
