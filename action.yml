@@ -1,5 +1,5 @@
 name: 'approved-checker'
-description: 'export approved state to environment variables.'
+description: 'export approved state to step output'
 branding:
   icon: 'thumbs-up'
   color: 'green'
