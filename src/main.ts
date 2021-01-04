@@ -24,6 +24,7 @@ async function run() {
     }
     if (action === "submitted" && state === "approved") {
       const approvals = getApprovals();
+      const checkRequested = getCheckChangesRequested();
       const octokit = new Octokit({ auth: `token ${token}` });
       const [owner, repo] = nwo.split("/");
       const options = octokit.pulls.listReviews.endpoint.merge({ owner, repo, pull_number: payload.pull_request.number });
@@ -33,15 +34,14 @@ async function run() {
       for await (const review of flatten(list)) {
         if (review.state === "APPROVED") {
           users.add(review.user.login);
-          if (approvals <= users.size) {
-            core.setOutput("approved", "true");
-            core.exportVariable("APPROVED", "true");
-            break;
-          }
+        } else if (checkRequested && review.state === "CHANGES_REQUESTED") {
+          core.setOutput("approved", false);
         }
       }
+
+      core.setOutput("approved", approvals <= users.size);
     } else {
-      core.info(`${process.env.GITHUB_EVENT_NAME}/${action}/${state} is not supported.`);
+      core.info(`${process.env.GITHUB_EVENT_NAME}/${action}/${state} is not suitable for check.`);
     }
   } catch (error) {
     core.setFailed(error.message);
@@ -57,6 +57,11 @@ function getApprovals() {
     }
   }
   return 1;
+}
+
+function getCheckChangesRequested() {
+  const b = core.getInput("check_changes_requested");
+  return (b == null || b == "true");
 }
 
 // tslint:disable-next-line: no-floating-promises
