@@ -1,16 +1,19 @@
-name: 'approved-event'
+name: 'approved-checker'
 description: 'export approved state to environment variables.'
 branding:
   icon: 'thumbs-up'
   color: 'green'
-author: 'taichi'
+author: 'luisrjaeger'
 inputs:
   approvals:
     description: 'number of approvals require to be approved.'
     default: '1'
+  check_changes_requested:
+    description: 'Check for changes requests'
+    default: 'true'
 outputs:
   approved:
-    description: 'if current pull request is approved, this value is set to true.'
+    description: 'if current pull request is approved, this value is set to true otherwise false.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
