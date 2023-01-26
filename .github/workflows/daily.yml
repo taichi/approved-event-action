@@ -1,6 +1,6 @@
 on:
-  schedule:
-    - cron:  '0 8 * * *'
+  push:
+  
 name: Daily Build
 jobs:
   build:
