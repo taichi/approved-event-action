@@ -1,3 +1,5 @@
+Use [Reviewing deployments](https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments), an official GitHub feature.
+
 # approved-event-action
 
 This action provide Pseudo Appeoved Event.
